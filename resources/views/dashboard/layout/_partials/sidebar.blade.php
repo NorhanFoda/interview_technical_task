@@ -36,7 +36,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('dashboard.users.index') }}">Users</a>
-                <a class="collapse-item" href="cards.html">Roles & Permissions</a>
+                <a class="collapse-item" href="{{ route('dashboard.roles.index') }}">Roles & Permissions</a>
             </div>
         </div>
     </li>

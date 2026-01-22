@@ -5,10 +5,12 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Repositories\MySql\{
-    UserRepository
+    UserRepository,
+    RoleRepository
 };
 use App\Repositories\Contracts\{
-    UserContract
+    UserContract,
+    RoleContract
 };
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserContract::class, UserRepository::class);
+        $this->app->bind(RoleContract::class, RoleRepository::class);
     }
 
     /**

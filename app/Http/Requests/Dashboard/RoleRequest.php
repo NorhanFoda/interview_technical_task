@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,13 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|exists:roles,name',
+            'name' => 'required|string|max:255|unique:roles,name',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'exists:permissions,name',
         ];
 
         if ($this->isMethod('put') || $this->isMethod('patch')) {
-            $rules['email'] = 'required|email|unique:users,email,' . $this->route('user')->id;
-            $rules['password'] = 'nullable|string|min:6|confirmed';
+            $rules['name'] = 'required|string|max:255|unique:roles,name,' . $this->route('role')->id;
         }
 
         return $rules;

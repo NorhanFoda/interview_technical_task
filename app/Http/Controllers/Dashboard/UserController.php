@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserContract;
 use App\Http\Requests\Dashboard\UserRequest;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -19,6 +20,10 @@ class UserController extends Controller
     protected array $filters = [];
     public function __construct(protected UserContract $contract)
     {
+        $this->middleware('permission:users.view')->only(['index', 'show']);
+        $this->middleware('permission:users.create')->only(['create', 'store']);
+        $this->middleware('permission:users.update')->only(['edit', 'update']);
+        $this->middleware('permission:users.delete')->only(['destroy']);
         $this->filters = request()->all();
     }
     /**
@@ -35,7 +40,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view($this->createView);
+        $roles = Role::pluck('name', 'id');
+        return view($this->createView, compact('roles'));
     }
 
     /**
@@ -60,7 +66,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view($this->editView, compact('user'));
+        $roles = Role::pluck('name', 'id');
+        return view($this->editView, compact('user', 'roles'));
     }
 
     /**

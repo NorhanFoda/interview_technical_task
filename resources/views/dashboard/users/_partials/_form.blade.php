@@ -15,6 +15,21 @@
 </div>
 
 <div class="form-group">
+    <label for="role">Role</label>
+    <select name="role" id="role" class="form-control @error('role') is-invalid @enderror" required>
+        <option value="">Select Role</option>
+        @foreach($roles as $id => $name)
+            <option value="{{ $name }}" {{ old('role', isset($user) && $user->roles->first() ? $user->roles->first()->name : '') == $name ? 'selected' : '' }}>
+                {{ $name }}
+            </option>
+        @endforeach
+    </select>
+    @error('role')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" {{ isset($user) ? '' : 'required' }}>
     @if(isset($user))
