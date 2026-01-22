@@ -43,4 +43,18 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Products Management
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('dashboard.products.index') }}"
+            aria-expanded="true">
+            <i class="fas fa-fw fa-box"></i>
+            <span>Products</span>
+        </a>
+    </li>
 </ul>

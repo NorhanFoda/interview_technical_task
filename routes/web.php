@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ {
     UserController,
-    RoleController
+    RoleController,
+    ProductController
 };
 
 use App\Http\Controllers\Auth\AuthController;
@@ -20,5 +21,6 @@ Route::middleware(['auth'])->group(function () {
     Route::name('dashboard.')->prefix('dashboard')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
+        Route::resource('products', ProductController::class);
     });
 });
