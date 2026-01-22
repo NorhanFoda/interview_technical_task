@@ -3,6 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use App\Repositories\MySql\{
+    UserRepository
+};
+use App\Repositories\Contracts\{
+    UserContract
+};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(UserContract::class, UserRepository::class);
     }
 
     /**
@@ -19,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFive();
     }
 }
