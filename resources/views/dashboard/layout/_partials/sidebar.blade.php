@@ -57,4 +57,18 @@
             <span>Products</span>
         </a>
     </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Orders Management
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('dashboard.orders.index') }}"
+            aria-expanded="true">
+            <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Orders</span>
+        </a>
+    </li>
 </ul>

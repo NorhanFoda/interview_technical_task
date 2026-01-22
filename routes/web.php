@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ {
     UserController,
     RoleController,
-    ProductController
+    ProductController,
+    OrderController
 };
 
 use App\Http\Controllers\Auth\AuthController;
@@ -22,5 +23,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('products', ProductController::class);
+        Route::resource('orders', OrderController::class)->only(['index', 'show']);
     });
 });

@@ -7,12 +7,16 @@ use Illuminate\Pagination\Paginator;
 use App\Repositories\MySql\{
     UserRepository,
     RoleRepository,
-    ProductRepository
+    ProductRepository,
+    OrderRepository,
+    OrderItemRepository
 };
 use App\Repositories\Contracts\{
     UserContract,
     RoleContract,
-    ProductContract
+    ProductContract,
+    OrderContract,
+    OrderItemContract
 };
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserContract::class, UserRepository::class);
         $this->app->bind(RoleContract::class, RoleRepository::class);
         $this->app->bind(ProductContract::class, ProductRepository::class);
+        $this->app->bind(OrderContract::class, OrderRepository::class);
+        $this->app->bind(OrderItemContract::class, OrderItemRepository::class);
     }
 
     /**
