@@ -3,8 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\OrderType;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -47,6 +50,14 @@ class User extends Authenticatable
         ];
     }
 
+    public function cart(): HasOne
+    {
+        return $this->hasOne(Order::class)->where('type', OrderType::CART->value);
+    }
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class)->where('type', OrderType::ORDER->value);
+    }
     public function getFilters(): array
     {
         return [];
