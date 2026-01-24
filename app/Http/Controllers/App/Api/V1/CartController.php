@@ -5,7 +5,8 @@ namespace App\Http\Controllers\App\Api\V1;
 use Illuminate\Http\Request;
 use App\Services\Cart\CartService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\App\Api\CartRequest;
+use App\Http\Requests\App\Api\AddToCartRequest;
+use App\Http\Requests\App\Api\RemoveFromCartRequest;
 
 class CartController extends Controller
 {
@@ -16,10 +17,24 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CartRequest $request)
+    public function store(AddToCartRequest $request)
     {
-        $this->cartService->addToCart($request->validated());
-        return response()->json(['message' => 'Product added to cart successfully']);
+        try {
+            $cart = $this->cartService->addToCart($request->validated());
+            return response()->json(['message' => 'Product added to cart successfully', 'data' => $cart]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function removeFromCart(RemoveFromCartRequest $request)
+    {
+        try {
+            $cart = $this->cartService->removeFromCart($request->validated());
+            return response()->json(['message' => 'Product removed from cart successfully', 'data' => $cart]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
     /**

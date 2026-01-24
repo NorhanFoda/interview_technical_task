@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('add-to-cart', [CartController::class, 'store']);
+Route::post('remove-from-cart', [CartController::class, 'removeFromCart']);

@@ -4,7 +4,7 @@ namespace App\Http\Requests\App\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartRequest extends FormRequest
+class RemoveFromCartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class CartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1',
+            'product_id' => 'required|exists:order_items,product_id',
+            'cart_id' => 'required|exists:orders,id',
         ];
     }
 
