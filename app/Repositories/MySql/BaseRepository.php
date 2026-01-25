@@ -168,6 +168,12 @@ abstract class BaseRepository implements BaseContract
         return $this->withFilters($query, $filters)->find($id);
     }
 
+    public function findAndLock(int|array $id, array $relations = [], array $filters = []): mixed
+    {
+        $query = $this->applyRelations($this->model, $relations);
+        return $this->withFilters($query, $filters)->lockForUpdate()->findOrFail($id);
+    }
+
     /**
      * @param int $id
      * @param array $relations

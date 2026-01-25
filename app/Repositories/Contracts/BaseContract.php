@@ -86,10 +86,18 @@ interface BaseContract
      * @param array $filters
      * @return mixed
      */
-    public function find(int $id, array $relations = [], array $filters = []): mixed;
+    public function find(int|array $id, array $relations = [], array $filters = []): mixed;
+
+     /**
+     * @param int|array $id
+     * @param array $relations
+     * @param array $filters
+     * @return mixed
+     */
+    public function findAndLock(int|array $id, array $relations = [], array $filters = []): mixed;
 
     /**
-     * @param int $id
+     * @param int|array $id
      * @param array $relations
      * @param array $filters
      * @return mixed

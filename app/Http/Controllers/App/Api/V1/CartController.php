@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App\Api\V1;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Services\Cart\CartService;
 use App\Http\Controllers\Controller;
@@ -40,24 +41,8 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order $order)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        //TODO:: Show cart details
     }
 }
