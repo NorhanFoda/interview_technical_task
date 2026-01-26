@@ -55,3 +55,6 @@ Orders are processed asynchronously using jobs and events
 Email notifications and invoice generation are handled by jobs
 
 Business logic is kept in services; controllers are thin and readable
+
+Planning Notes (Optional)
+I included a few snapshots of my handwritten notes to show my initial thinking and structure. These are optional and not required for reviewing the task.
